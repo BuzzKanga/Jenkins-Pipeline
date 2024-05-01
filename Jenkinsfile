@@ -4,34 +4,42 @@ pipeline {
         stage('1. Build') {
             steps {
                 echo 'Fetch the source code from: %DIRECTORY_PATH%'
-                echo 'Compile the code and generate any necessary artifacts'
+                echo 'Compile the code and package the code using the build automation tool: Maven'
             }
         }
-        stage('2. Test') {
+        stage('2. Unit and Integration Tests') {
             steps {
-                echo 'Unit Test'
-                echo 'Integration Test'
+                echo 'Run unit and integration tests to ensure different components work together as expected.'
+                echo 'Test automation tool used are: JUnit (for unit tests) and Katalon (for integration test)'
             }
         }
-        stage('3. Code Quality Check') {
+        stage('3. Code Analysis') {
             steps {
-                echo 'Check the quality of the code'
+                echo 'Analyse code and check it meets industry standards'
+                echo 'SonarQube used to perform code analysis'
             }
         }
-        stage('4. Deploy') {
+        stage('4. Security Scan') {
             steps {
-                echo 'Deploy the application to a testing environment: '
+                echo 'Code scanned for vulerabilities using: Nessus'
             }
         }
-        stage('5. Approval') {
+        stage('5. Deploy to Staging') {
             steps {
-                sleep(3) // wait 3 seconds
-                echo 'Approved' 
+                echo 'Copying code to AWS EC2 staging environment'
+                sleep(2) // wait 2 seconds
             }
         }
-        stage('6. Deploy to Production') {
+        stage('6. Integration tests on staging') {
             steps {
-                echo 'Unit Test'
+                echo 'Run integration tests in satging environment' 
+                sleep(2) // wait 2 seconds
+            }
+        }
+        stage('7. Deploy to Production') {
+            steps {
+                echo 'Copying code to AWS EC2 production environment'
+                sleep(2) // wait 2 seconds
             }
         }
     }
