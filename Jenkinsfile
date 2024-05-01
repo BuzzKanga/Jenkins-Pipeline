@@ -24,6 +24,8 @@ pipeline {
         stage('4. Security Scan') {
             steps {
                 echo 'Code scanned for vulerabilities using: Nessus'
+                sleep(2) // wait 2 seconds
+                emailext(attachLog: true, body: 'The security scans have now completed', subject: 'Security Scans Status - $BUILD_STATUS', to: 'schristolis@gmail.com')
             }
         }
         stage('5. Deploy to Staging') {
