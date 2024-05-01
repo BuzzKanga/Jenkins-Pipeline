@@ -11,6 +11,8 @@ pipeline {
             steps {
                 echo 'Run unit and integration tests to ensure different components work together as expected.'
                 echo 'Test automation tool used are: JUnit (for unit tests) and Katalon (for integration test)'
+                sleep(2) // wait 2 seconds
+                emailext(attachLog: true, body: 'The unit and integration tests have now completed', subject: 'Unit and Integration Testing Status', to: 'schristolis@gmail.com')
             }
         }
         stage('3. Code Analysis') {
