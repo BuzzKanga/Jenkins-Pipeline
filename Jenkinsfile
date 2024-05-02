@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('1. Build') {
             steps {
-                echo 'Starting.......'
+                echo 'Starting.........'
                 echo 'Fetch the source code from: %DIRECTORY_PATH%'
                 echo 'Compile the code and package the code using the build automation tool: Maven'
             }
